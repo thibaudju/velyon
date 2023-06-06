@@ -3,14 +3,11 @@
     materialized='view'
 )}}
 
-WITH population AS (
-    SELECT
-)
-
 SELECT 
     commune1
+    ,insee1
     ,anneelivraison
-    ,count(anneelivraison) AS nb_amenagement
+    ,count(anneelivraison) AS nb_amenagements
 FROM velyon-batch-1187.amenagement.amenagement
-GROUP BY commune1,anneelivraison
-ORDER BY commune1,anneelivraison
+GROUP BY commune1,insee1,anneelivraison
+ORDER BY commune1
