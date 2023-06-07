@@ -2,10 +2,27 @@
     materialized='view',
 )}}
 
+WITH sb1 AS (
+  SELECT
+    concat(Num_Acc, num_veh) as cle
+    ,*
+FROM velyon-batch-1187.accident.usagers_all
+),
+
+    sb2 AS (
+        SELECT
+        COUNT(cle) OVER(PARTITION BY cle) as iteration
+    ,*
+FROM sb1
+    )
+
+
+
+
 SELECT 
 Num_Acc,
-id_vehicule,
 num_veh,
+cle,
     CASE 
         WHEN catu = 1 THEN 'Conducteur'
         WHEN catu = 2 THEN 'Passager'
@@ -35,8 +52,8 @@ an_nais as annee_naissance,
         WHEN trajet = 5 THEN 'Promenade – loisirs'
         WHEN trajet = 9 THEN 'Autre'
         ELSE ' '
-    END as trajet,
-    CASE 
+    END as trajet
+    /*CASE 
         WHEN secu1 = -1 THEN 'Non renseigné'
         WHEN secu1 = 0 THEN 'Aucun équipement'
         WHEN secu1 = 1 THEN 'Ceinture'
@@ -112,6 +129,7 @@ an_nais as annee_naissance,
         WHEN etatp = 1 THEN 'Accompagné'
         WHEN etatp = 1 THEN 'En groupe'
         ELSE ' '
-    END as etat_pieton,
+    END as etat_pieton,*/
 
-FROM velyon-batch-1187.accident.usagers_all
+FROM sb2
+WHERE iteration = 1
