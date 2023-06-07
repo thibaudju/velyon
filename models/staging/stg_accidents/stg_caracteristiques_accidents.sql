@@ -15,7 +15,7 @@ hrmm  as heure_minute,
         ELSE ' '
     END as lumiere,
 dep as departement,
-com as commune,
+com as commune_insee,
     CASE 
         WHEN agg = 1 THEN 'Hors agglomération'
         WHEN agg = 2 THEN 'En agglomération'
@@ -57,8 +57,9 @@ com as commune,
         WHEN col = 7 THEN 'Sans collision'
         ELSE ' '
     END as collision,
-COALESCE(adr,'') as adresse,
+UPPER(COALESCE(adr,'')) as adresse,
 COALESCE(lat, '') as latitude,
 COALESCE(long, '') as longitude
 
 FROM velyon-batch-1187.accident.caracteristiques_all
+WHERE dep = '69'

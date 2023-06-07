@@ -1,0 +1,187 @@
+version: 2
+
+models:
+  - name: stg_caracteristiques_accidents
+    description : One line by accident. Localisation, date and condition of the event
+    columns:
+      - name: Num_acc
+        description : the unique identifier of the event
+        tests:
+          - unique
+          - not_null
+
+      - name: date_date
+        description : Date of the event
+        tests:
+          - not_null
+
+      - name: heure_minute
+        description : Time of the event
+
+      - name: lumiere
+        description : light level at the moment of the event
+
+      - name: departement
+        description : Date of the event
+        tests:
+          - not_null     
+
+      - name: commune_insee
+        description : Represents the code INSEE of the city
+        tests:
+          - not_null      
+
+      - name: agglomeration
+        description : inside or outside the agglomeration
+
+      - name: intersection
+        description : type of intersection
+
+
+      - name: meteo
+        description : details regarding the wheather
+
+      - name: collision 
+        description : type of collision
+ 
+
+      - name: adresse
+        description : adresse of the event
+        tests:
+          - not_null 
+
+      - name: latitude
+        description : latitude of the event
+        tests:
+          - not_null 
+
+      - name: longitude
+        description : longitude of the event
+        tests:
+          - not_null
+
+
+
+  - name: stg_lieux_accidents
+    description : One line by accident. Localisation and description of the event
+    columns:
+
+      - name: Num_acc
+        description : the unique identifier of the event
+        tests:
+          - unique
+          - not_null
+
+      - name: categorie_route
+        description : Road category
+
+      - name: circulation
+        description : Traffic direction
+
+
+      - name: nombre_de_voies
+        description : Describe the number of lines.
+
+      - name: voie_reservee 
+        description : Describe if the road is dedicated to specific transport type.
+ 
+
+      - name: profil_route
+        description : Describe the road conditions. 
+
+      - name: plan
+        description : Gives indication regarding the road.
+
+      - name: largeur_tpc
+        description : Gives the largeur of the terre-plein central.
+
+      - name: largeur_route
+        description : Gives the largeur of the route.
+
+      - name: surface
+        description : condition of the SURFACE.
+
+      - name: infrastructure
+        description : infrastructure type.
+
+      - name: situation
+        description : situation of the event.       
+
+  - name: stg_vehicules_accidents
+    description : One or multiple lines by accident. Describe the type of vehicle and the choc.
+  
+
+    columns:
+      - name: Num_Acc
+        description : the unique identifier of the event.
+        tests:
+          - not_null
+
+
+      - name: num_veh
+        description : Identifier of the vehicles involve in the accident.
+        tests:
+          - not_null
+
+      - name: cle
+        description : the unique identifier of the event.
+        tests:
+          - unique
+
+
+      - name: categorie_vehicule
+        description : Vehicle type
+        tests:
+          - not_null
+
+      - name: obstacle_fixe
+        description : type of OF.
+
+      - name: obstacle_mobile 
+        description : type of OM.
+ 
+      - name: choc
+        description : where was the impact. 
+
+      - name: manoeuvre
+        description : what was the man doing?
+
+      - name: motor
+        description : type of motor if there was one of course dude.
+  
+  - name: stg_usagers_accidents
+    description : One or multiple lines by accident. Describe the type of vehicle and the choc.
+  
+
+    columns:
+      - name: Num_Acc
+        description : the unique identifier of the event.
+        tests:
+          - not_null
+
+
+      - name: num_veh
+        description : Identifier of the vehicles involve in the accident.
+        tests:
+          - not_null
+
+      - name: cle
+        description : the unique identifier of the event.
+        tests:
+          - unique
+
+
+      - name: categorie_usager
+        description : type of usager
+
+      - name: gravite_blessure
+        description : type of blessure.
+
+      - name: sexe 
+        description : Male or female.
+ 
+      - name: annee_naissance
+        description : how old ? 
+
+      - name: trajet
+        description : type of journey
