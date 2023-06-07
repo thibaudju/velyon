@@ -2,23 +2,26 @@
     materialized='view'
 )}}
 
+-- Cleaning de la table améngament
+
 SELECT
-    int64_field_0 AS id 
+    int64_field_0 AS id
+    ,PARSE_DATE("%Y", CAST(anneelivraison AS STRING)) AS annee
     ,nom
-    ,commune2
-    ,insee2
     -- Pour une seule commune1 nulle (avec juste une commune2)
     ,CASE 
         WHEN commune1 IS NULL THEN commune2
         ELSE commune1
         END
-    AS commune1
+        AS commune
     -- Pour une seule insee1 nulle (avec juste insee2)
     ,CASE
         WHEN insee1 IS NULL THEN insee2
         ELSE insee1
         END
-    AS insee1
+    AS insee
+    ,commune2
+    ,insee2
     -- Réseau (valeurs nulles)
     ,CASE
         WHEN reseau IS NULL THEN "Non défini"
