@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: stg_pluvio_clean_2011
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2012
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2013
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2014
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2015
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2016
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2017
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2018
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2019
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2020
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2021
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2022
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+  - name: stg_pluvio_clean_2023
+    columns:
+      - name: qty_pluie
+        tests:
+          - not_null
+              
