@@ -1,0 +1,20 @@
+version: 2
+
+models:
+
+    - name: stg_compteurs_all_mesures
+      description: one line by channel_id & by hour of count, with sum of count for each hour
+      tests:
+        - unique:
+            column_name: "(channel_id || '-' || start_hour)"
+            
+      columns:
+          - name: channel_id
+            description: unique identifier of a channel
+            tests : 
+            - not_null
+
+          - name: start_hour
+            description: the start of the hour within which the count is aggregated
+            tests:
+              - not_null
