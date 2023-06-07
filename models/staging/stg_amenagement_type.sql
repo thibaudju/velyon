@@ -8,6 +8,6 @@ SELECT
     ,insee1
     ,typeamenagement
     ,count(commune1) AS nb_amenagements_par_type
-FROM velyon-batch-1187.amenagement.amenagement
+FROM {{ref("stg_amenagement")}}
 GROUP BY commune1,insee1,typeamenagement
 ORDER BY commune1,nb_amenagements_par_type DESC
