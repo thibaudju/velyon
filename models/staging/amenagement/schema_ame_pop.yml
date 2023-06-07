@@ -1,0 +1,119 @@
+version: 2
+
+models:
+  - name: stg_population
+    description: population par commune (ville ou arrondissement) et par année
+    tests:
+      - unique:
+          column_name: "(commune || '-' || annee)"
+  
+    columns: 
+      - name: insee
+        description: code insee de la commune (unique pour chaque commune)
+        tests:
+          - not_null
+      
+      - name : commune
+        description: ville ou arrondissement de Lyon
+
+      - name : nb_habitants
+        description: nombre d'habitants dans la commune
+      
+      - name : annee
+        description : année pour laquelle le nombre d'habitants a été compté
+
+      - name : gid
+        description : clé primaire ?
+        tests:
+          - not_null
+
+      - name : geometry
+        description : géolocalisation issue du fichier GEOJSON initial
+        tests :
+          - not_null
+
+
+  - name: stg_amenagement
+    description: amenagements par commune (ville ou arrondissement) et par année
+
+    columns:
+      - name: id
+        description: clé primaire des aménagements cyclables
+        tests:
+          - unique
+          - not_null
+    
+      - name : nom
+        description: nom donné à l'aménagement (souvent une rue)
+
+      - name : commune
+        description: commune traversée par l'aménagement (ville ou arrondissement de Lyon)
+
+      - name : insee 
+        description: code insee de la commune (un par ville ou arrondissement de Lyon)
+        tests:
+          - not_null
+              
+      - name : commune2
+        description: si plusieurs communes sont traversées par l'aménagement, colonne souvent nulle
+      
+      - name : insee2
+        description: code insee de la commune n°2
+
+      - name : gid
+        description : clé primaire ? 
+        tests:
+          - not_null
+
+      - name : geometry
+        description: géolocalisation issue du fichier GEOJSON initial
+        tests :
+          - not_null
+      
+      - name : reseau
+        description: importance du réseau (structurant, secondaire, ...)
+
+      - name : localisation
+        description : donnée secondaire par rapport au type d'aménagement
+
+      - name : typeamenagement
+        description: type d'aménagement cyclable (8 différents)
+      
+      - name : typeamenagement2
+        description : type d'aménagement cyclable s'il y en a 2 pour la même rue
+
+      - name : positionnement
+        description: piste unidirectionnelle ou bidirectionnelle, unilatérale ou bilatérale
+
+      - name : senscirculation
+        description: double sens ou sens unique
+
+      - name : environnement
+        description: circulation, parc, tunnel, ...
+
+      - name : typologiepiste
+        description: sur trottoir ou sur chaussée, ...
+      
+      - name : revetementpiste
+        description: sable, béton, bois, ...
+
+      - name : domonialite
+        description: métropole, commune, état, privé, ...
+      
+      - name : reglementation
+        description: voie verte, vélo obligatoire, zone 30, ...
+
+      - name : longueur
+        description: longueur en mètres de l'aménagement
+
+      - name : annee
+        description: année de livraison de l'aménagement
+
+      - name : observation
+        description: doublon par rapport à zonecirculationapaisee
+      
+      - name : financement
+        description: type de financement de l'aménagement
+
+      - name : zonecirculationapaisee
+        description: zone 30, zone de rencontre ou aire piétonne

@@ -15,9 +15,6 @@ Num_Acc,
         WHEN catr = 9 THEN 'autre'
         ELSE ' '
     END as categorie_route,
-voie,
- v1,
-COALESCE(v2,'') as v2,
     CASE 
         WHEN circ = 1 THEN 'Non renseigné'
         WHEN circ = 2 THEN 'A sens unique'
@@ -43,8 +40,6 @@ nbv as nombre_de_voies,
         WHEN prof= 4 THEN 'Bas de côte'
         ELSE ' '
     END as profil_route,
-COALESCE(pr,'') as borne,
-pr1 as distance_borne,
     CASE
         WHEN plan = -1 THEN 'Non renseigné'
         WHEN plan = 1 THEN 'Partie rectiligne'
@@ -93,8 +88,6 @@ COALESCE(larrout, '') as largeur_route,
         WHEN situ = 6 THEN 'Sur autre voie spéciale'
         WHEN situ = 8 THEN 'Autres'
         ELSE ' '
-    END as situation,
-
-vma as Vit_max_autorisee
+    END as situation
 
 FROM velyon-batch-1187.accident.lieux_all

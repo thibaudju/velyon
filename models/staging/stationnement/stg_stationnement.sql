@@ -4,7 +4,9 @@
 
 SELECT 
     int64_field_0 AS id
-    ,* except (int64_field_0, abrite, pole)
+    ,PARSE_DATE("%Y", CAST(anneerealisation AS STRING)) AS annee
+    ,codeinsee AS insee
+    ,* except (int64_field_0, abrite, pole,codeinsee)
     ,CASE
         WHEN pole IS NULL THEN "non défini"
         ELSE pole
