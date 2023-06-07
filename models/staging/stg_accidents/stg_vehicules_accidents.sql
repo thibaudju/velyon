@@ -2,11 +2,27 @@
     materialized='view',
 )}}
 
+
+
+WITH sb1 AS (
+  SELECT
+    concat(Num_Acc, num_veh) as cle
+    ,*
+FROM velyon-batch-1187.accident.vehicules_all
+),
+
+    sb2 AS (
+        SELECT
+        COUNT(cle) OVER(PARTITION BY cle) as iteration
+    ,*
+FROM sb1
+    )
+
 SELECT 
 Num_Acc,
-id_vehicule,
 num_veh,
-senc as sens_circu,
+cle,
+id_vehicule,
     CASE 
         WHEN catv = 00 THEN 'Indéterminable'
         WHEN catv = 01 THEN 'Bicyclette'
@@ -140,4 +156,5 @@ senc as sens_circu,
         ELSE ' '
     END as motor
         
-FROM velyon-batch-1187.accident.vehicules_all
+FROM sb2
+WHERE iteration =1
