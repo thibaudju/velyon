@@ -4,10 +4,10 @@
 )}}
 
 SELECT
-    commune1
-    ,insee1
+    commune
+    ,insee
     ,typeamenagement
-    ,count(commune1) AS nb_amenagements_par_type
+    ,count(commune) AS nb_amenagements_par_type
 FROM {{ref("stg_amenagement")}}
-GROUP BY commune1,insee1,typeamenagement
-ORDER BY commune1,nb_amenagements_par_type DESC
+GROUP BY commune,insee,typeamenagement
+ORDER BY commune,nb_amenagements_par_type DESC

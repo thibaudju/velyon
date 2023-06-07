@@ -5,9 +5,9 @@
 
 SELECT
     commune
-    ,codeinsee
+    ,insee
     ,mobiliervelo
     ,count(commune) AS nb_mobilier
 FROM {{ref("stg_stationnement")}}
-GROUP BY commune,codeinsee,mobiliervelo
+GROUP BY commune,insee,mobiliervelo
 ORDER BY commune,nb_mobilier DESC
