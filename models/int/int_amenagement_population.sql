@@ -10,8 +10,8 @@ WITH pre_filter AS (
     CAST(am.anneelivraison AS STRING) AS anneelivraison,
     pop.annee,
     pop.nb_habitants
-FROM {{ref('amenagement_communes')}} AS am
-JOIN {{ref('population')}} AS pop ON (am.insee1 = pop.insee)
+FROM {{ref('stg_amenagement_communes')}} AS am
+JOIN {{ref('stg_population')}} AS pop ON (am.insee1 = pop.insee)
 )
 
 

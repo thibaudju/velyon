@@ -8,6 +8,6 @@ SELECT
     ,insee1
     ,anneelivraison
     ,count(anneelivraison) AS nb_amenagements
-FROM velyon-batch-1187.amenagement.amenagement
+FROM {{ref("stg_amenagement")}}
 GROUP BY commune1,insee1,anneelivraison
 ORDER BY commune1

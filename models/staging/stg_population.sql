@@ -4,6 +4,7 @@
 
 SELECT 
   nb_habitants
+  -- Pour retirer le "pop" devant les années
   ,SUBSTRING(annee,4) AS annee
   ,commune
   ,insee
