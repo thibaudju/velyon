@@ -8,6 +8,6 @@ SELECT
     ,codeinsee
     ,mobiliervelo
     ,count(commune) AS nb_mobilier
-FROM velyon-batch-1187.dbt_mchanut.stg_stationnement
+FROM {{ref("stg_stationnement")}}
 GROUP BY commune,codeinsee,mobiliervelo
 ORDER BY commune,nb_mobilier DESC
