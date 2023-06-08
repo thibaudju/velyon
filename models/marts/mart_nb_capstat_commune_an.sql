@@ -1,4 +1,4 @@
--- De la table stationnement, récupérer l'évolution de la capacité vélos par commune et par an
+-- De la table stationnement, récupérer le nombre de capacité vélos en plus par commune et par an
 
 {{ config(
     materialized='view'

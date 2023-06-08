@@ -1,4 +1,4 @@
--- De la table aménagement, récupérer le nombre de type d'aménagements par commune (309 lignes)
+-- De la table aménagement, récupérer le nombre de type d'aménagements en plus par commune (309 lignes)
 
 {{ config(
     materialized='view'

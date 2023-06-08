@@ -1,4 +1,4 @@
--- De la table stationnement, récupérer l'évolution de la capacité vélos par an au global pour la métropole
+-- De la table stationnement, récupérer le nombre de capacité vélos en plus par an au global pour la métropole
 
 {{ config(
     materialized='view'
