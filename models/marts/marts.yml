@@ -11,7 +11,7 @@ models:
             tests : 
             - not_null
             - unique
-          - index_trafic
+          - name: index_trafic
             description: index de trafic avec l'année la plus  basse en base 100
             tests:
               - not_null
