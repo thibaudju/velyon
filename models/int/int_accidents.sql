@@ -53,15 +53,30 @@ SELECT
     ,sq3.cle
     ,sq3.date_date
     ,sq3.categorie_vehicule
-    ,usa.sexe
-    ,usa.annee_naissance
-    ,usa.gravite_blessure
+    ,CASE
+        WHEN usa.sexe IS NULL THEN "Non défini"
+        ELSE usa.sexe
+        END AS sexe
+    ,CASE
+        WHEN usa.annee_naissance IS NULL THEN "Non défini"
+        ELSE CAST(usa.annee_naissance AS STRING)
+        END AS annee_naissance
+    ,CASE
+        WHEN usa.gravite_blessure IS NULL THEN "Non défini"
+        ELSE usa.gravite_blessure
+        END AS gravite_blessure
     ,sq3.meteo
-    ,sq3.pluie_mm
+    ,CASE
+        WHEN sq3.pluie_mm IS NULL THEN 0
+        ELSE sq3.pluie_mm
+        END AS pluie_mm
     ,sq3.situation
     ,sq3.intersection
     ,sq3.voie_reservee
-    ,usa.trajet
+    ,CASE
+        WHEN usa.trajet IS NULL THEN "Non défini"
+        ELSE usa.trajet
+        END AS trajet
     ,sq3.longitude
     ,sq3.latitude
     ,CONCAT(REPLACE(sq3.latitude,",","."),",",REPLACE(sq3.longitude,",",".")) as geo_coordinates
