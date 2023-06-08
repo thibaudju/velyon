@@ -58,6 +58,9 @@ models:
               - not_null
               - dbt_utils.expression_is_true:
                  expression: "> 0"
+          
+          - name: normalized_count
+            description: nombre de passages normalisé (de 0 à 1) par channel_id afin de pouvoir faire des comparaisons et des tendences
 
     - name: stg_compteurs_sites_comptage
       description: détail des sites de comptage de la métropole
