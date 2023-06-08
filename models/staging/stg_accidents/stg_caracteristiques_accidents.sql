@@ -2,6 +2,8 @@
     materialized='view',
 )}}
 
+-- Cleaning de la table "caracteristiques_accidents"
+
 SELECT 
 Num_Acc,
 FORMAT_TIMESTAMP('%Y-%m-%d', TIMESTAMP(DATE(CONCAT(CAST(an AS STRING), '-', CAST(mois AS STRING), '-', CAST(jour AS STRING))))) AS date_date,
@@ -62,4 +64,5 @@ COALESCE(lat, '') as latitude,
 COALESCE(long, '') as longitude
 
 FROM velyon-batch-1187.accident.caracteristiques_all
+-- Filtre sur le département de Lyon
 WHERE dep = '69'
