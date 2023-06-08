@@ -9,7 +9,8 @@ SELECT
     ,insee
     ,annee
     ,typeamenagement
-    ,count(commune) AS nb_amenagements_par_type
+    ,COUNT(commune) AS nb_amenagements_par_type
+    ,ROUND(SUM(longueur),0) AS longueur_amenagement
 FROM {{ref("stg_amenagement")}}
 GROUP BY commune,insee,annee,typeamenagement
 ORDER BY commune,nb_amenagements_par_type DESC
