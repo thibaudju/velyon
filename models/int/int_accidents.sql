@@ -64,7 +64,7 @@ SELECT
     ,usa.trajet
     ,sq3.longitude
     ,sq3.latitude
-    ,CONCAT("{",sq3.latitude,"},{",sq3.longitude,"}") as geo_coordinates
+    ,CONCAT(REPLACE(sq3.latitude,",","."),",",REPLACE(sq3.longitude,",",".")) as geo_coordinates
 FROM sq3
 LEFT JOIN {{ref('stg_usagers_accidents')}} as usa
 ON sq3.cle = usa.cle 
