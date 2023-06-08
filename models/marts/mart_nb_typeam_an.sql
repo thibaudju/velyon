@@ -1,9 +1,5 @@
 -- De la table aménagement, récupérer le nombre de type d'aménagements en plus par an au global pour la métropole
 
-{{ config(
-    materialized='view'
-)}}
-
 SELECT
     typeamenagement
     ,annee
