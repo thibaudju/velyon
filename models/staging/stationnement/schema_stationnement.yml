@@ -2,7 +2,67 @@ version: 2
 
 models:
   - name: stg_stationnement
+    description : Stationnements vélos mis en place par commune et par année
+  
     columns:
       - name: id
         tests:
           - unique
+          - not_null
+
+      - name : nom
+        description : 3 lettres commune + n° aménagement
+        tests:
+          - not_null
+          - unique
+        
+      - name : annee
+        description: année de mise en place du stationnement
+      
+      - name : insee
+        description: code insee de la commune
+
+      - name : adresse_complete
+        description: concaténéation des colonnes adresse, commune & France (avec virgules)
+
+      - name : adresse
+        description: lieu du stationnement
+
+      - name : commune
+        description: ville ou arrondissement  de Lyon (67 au total)
+
+      - name : avancement
+        description: existant ou programmé (seulement 3 programmés)
+
+      - name : gestionnaire
+        description: Gérant du stationnement (Grand Lyon, commune, ...)
+
+      - name : mobiliervelo
+        description: type de stationnement (wilmotte, en u inversé, ...)
+
+      - name : localisation
+        description: là où se trouve le stationnement (chaussée, trottoir, parc, ...)
+
+      - name : duree
+        description: normal ou longue durée (très majoritairement du normal)
+
+      - name : nbarceaux
+        description: colonne pas systématiquement renseignée
+
+      - name : capacite
+        description: nb de vélos que l'on peut garer
+
+      - name : validite
+        description: validé ou projet en cours de validation
+
+      - name : gid
+        description : ?????
+        tests:
+          - not_null
+
+      - name : geometry
+        description: géolocalisation issue du fichier GEOJSON initial
+
+      - name : pole
+        description: école, campus, ...
+      
