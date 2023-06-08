@@ -70,7 +70,7 @@ SELECT
         WHEN REGEXP_CONTAINS (pluviometre,"37") THEN "_37_QUINCIEUX"
         END
         AS pluviometre
-    ,CAST(date AS DATE) AS date 
+    ,CAST(date AS DATE) AS date_date 
     ,qty_pluie  
 FROM pluvio_merged
 ORDER BY date ASC  
