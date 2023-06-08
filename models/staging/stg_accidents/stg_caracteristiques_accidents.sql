@@ -6,7 +6,7 @@
 
 SELECT 
 Num_Acc,
-FORMAT_TIMESTAMP('%Y-%m-%d', TIMESTAMP(DATE(CONCAT(CAST(an AS STRING), '-', CAST(mois AS STRING), '-', CAST(jour AS STRING))))) AS date_date,
+CAST((FORMAT_TIMESTAMP('%Y-%m-%d', TIMESTAMP(DATE(CONCAT(CAST(an AS STRING), '-', CAST(mois AS STRING), '-', CAST(jour AS STRING)))))) AS DATE) AS date_date,
 hrmm  as heure_minute,
     CASE 
         WHEN lum = 1 THEN 'Plein jour'
