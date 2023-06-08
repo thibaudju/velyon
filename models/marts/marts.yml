@@ -1,0 +1,17 @@
+version: 2
+
+models:
+
+    - name: mart_compteurs_index_trafic_annuel
+      description: table pour data viz - creation d'un index annuel de trafic sur une base 100 l'année où le trafic est le plus bas. 
+            
+      columns:
+          - name: year
+            description: année de mesure
+            tests : 
+            - not_null
+            - unique
+          - index_trafic
+            description: index de trafic avec l'année la plus  basse en base 100
+            tests:
+              - not_null
