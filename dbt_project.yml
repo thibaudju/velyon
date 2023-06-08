@@ -27,3 +27,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
+models:
+  velyon:
+    staging:
+      +materialized: view
+    int:
+      +materialized: view
+    marts:
+      +materialized: table
+
