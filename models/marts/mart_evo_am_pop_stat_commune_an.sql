@@ -1,4 +1,5 @@
 -- Regrouper l'évolution de la population par année avec l'évolution du nombre d'aménagements cyclables et de stationnements vélos
+-- Le tout par commune et par an
 
 {{ config(
     materialized='view'
@@ -40,7 +41,7 @@ GROUP BY commune,insee,annee
 )
 
 SELECT
-    amenagement.*
+    amenagement.* EXCEPT (id_am)
     ,population.nb_habitants
     ,stationnement.capacite_statio_velos
 FROM amenagement
