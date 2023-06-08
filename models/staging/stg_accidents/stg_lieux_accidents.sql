@@ -2,6 +2,8 @@
     materialized='view',
 )}}
 
+-- Cleaning de la table "lieux_accidents"
+
 SELECT 
 Num_Acc,
     CASE 

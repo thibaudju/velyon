@@ -3,6 +3,7 @@
 )}}
 
 
+-- création d'une clé unique avec la combinaison Num_Acc + num_veh --
 
 WITH sb1 AS (
   SELECT
@@ -11,12 +12,17 @@ WITH sb1 AS (
 FROM velyon-batch-1187.accident.vehicules_all
 ),
 
+-- Cette subquery compte le nombre de fois où la clé "unique" appararait (environ 100 lignes avaient mal été completées
+-- ce qui créait quelques doublons dans les clés)
+
     sb2 AS (
         SELECT
         COUNT(cle) OVER(PARTITION BY cle) as iteration
-    ,*
-FROM sb1
+        ,*
+    FROM sb1
     )
+
+-- Cleaning de la table "vehicules_accidents"
 
 SELECT 
 Num_Acc,
@@ -157,4 +163,5 @@ id_vehicule,
     END as motor
         
 FROM sb2
+-- filtre pour garder les clés qui apparaissent uniquement une fois
 WHERE iteration =1
