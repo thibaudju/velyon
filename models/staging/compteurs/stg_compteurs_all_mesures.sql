@@ -11,9 +11,10 @@ WITH dates_clean AS (
 SELECT 
 mesures.channel_id,
 mesures.counter_id,
-CAST(REGEXP_REPLACE(start_datetime, r'\+.*', '') AS DATETIME FORMAT "YYYY-MM-DD HH24:MI:SS") AS start_datetime,
-CAST(REGEXP_REPLACE(end_datetime, r'\+.*', '') AS DATETIME FORMAT "YYYY-MM-DD HH24:MI:SS") AS end_datetime,
-count
+start_datetime,
+end_datetime,
+count,
+normalized_count
 FROM velyon-batch-1187.mesures_compteurs.all_mesures AS mesures
 WHERE count > 0 AND start_datetime >= "2011-01-01"
 
@@ -25,7 +26,8 @@ SELECT
     dates_clean.counter_id,
     -- normalize time step to 1h and group by to obtain sum of counter
     DATETIME_TRUNC(start_datetime, HOUR) AS start_hour,
-    SUM(COUNT) as nb_passages
+    SUM(COUNT) as nb_passages,
+    AVG (normalized_count) as normalized_count
 FROM dates_clean
 
 -- join with stg_compteurs_channel to remove channels that are not BIKE
