@@ -1,8 +1,5 @@
 -- Regrouper l'évolution de la population par année avec l'évolution du nombre d'aménagements cyclables et de stationnements vélos
-
-{{ config(
-    materialized='view'
-)}}
+-- Le tout par commune et par an
 
 -- Création d'un ID pour la table stg_amenagement (regroupement pour avoir le nombre d'aménagements par an et par commune)
 WITH amenagement AS (
@@ -40,7 +37,7 @@ GROUP BY commune,insee,annee
 )
 
 SELECT
-    amenagement.*
+    amenagement.* EXCEPT (id_am)
     ,population.nb_habitants
     ,stationnement.capacite_statio_velos
 FROM amenagement
