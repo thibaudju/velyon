@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_population
-    description: population par commune (ville ou arrondissement) et par année
+    description: Population par commune (ville ou arrondissement) et par année (de 2007 à 2019)
     tests:
       - unique:
           column_name: "(commune || '-' || annee)"
@@ -16,6 +16,9 @@ models:
       - name : commune
         description: ville ou arrondissement de Lyon
 
+      - name : adresse_complete
+        description : concaténéation des colonnes adresse, commune & France (avec virgules)
+
       - name : nb_habitants
         description: nombre d'habitants dans la commune
       
@@ -23,7 +26,7 @@ models:
         description : année pour laquelle le nombre d'habitants a été compté
 
       - name : gid
-        description : clé primaire ?
+        description : ?????
         tests:
           - not_null
 
@@ -34,7 +37,7 @@ models:
 
 
   - name: stg_amenagement
-    description: amenagements par commune (ville ou arrondissement) et par année
+    description: Aménagements cyclables par commune (ville ou arrondissement) et par année
 
     columns:
       - name: id
@@ -97,7 +100,7 @@ models:
       - name : revetementpiste
         description: sable, béton, bois, ...
 
-      - name : domonialite
+      - name : domanialite
         description: métropole, commune, état, privé, ...
       
       - name : reglementation

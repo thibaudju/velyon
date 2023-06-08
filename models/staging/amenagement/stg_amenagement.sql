@@ -2,11 +2,12 @@
     materialized='view'
 )}}
 
--- Cleaning de la table améngament
+-- Cleaning de la table aménagement
 
 SELECT
     int64_field_0 AS id
     ,PARSE_DATE("%Y", CAST(anneelivraison AS STRING)) AS annee
+    ,CONCAT(nom,", ",commune1,", ","Rhône",", ","FRANCE") AS adresse_complete
     ,nom
     -- Pour une seule commune1 nulle (avec juste une commune2)
     ,CASE 
@@ -34,7 +35,7 @@ SELECT
         ELSE localisation
         END
     AS localisation
-    ,* EXCEPT (int64_field_0,zonecirculationapaisee,financementac,commune1,insee1,nom,reseau,localisation,commune2,insee2)
+    ,* EXCEPT (int64_field_0,zonecirculationapaisee,financementac,commune1,insee1,nom,reseau,localisation,commune2,insee2,anneelivraison)
       -- Financement (valeurs nulles)
     ,CASE
         WHEN financementac IS NULL THEN "Non défini"

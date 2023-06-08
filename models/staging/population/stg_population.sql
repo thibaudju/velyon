@@ -4,8 +4,8 @@
 
 SELECT 
   nb_habitants
-  -- Pour retirer le "pop" devant les années
-  ,SUBSTRING(annee,4) AS annee
+  -- Pour retirer le "pop" devant les années et pour transformer en date
+  ,PARSE_DATE("%Y", CAST(SUBSTRING(annee,4) AS STRING)) AS annee
   ,commune
   ,insee
   ,gid
