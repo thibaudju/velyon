@@ -28,11 +28,11 @@ WITH sq1 AS (
 sq2 AS (
     SELECT
         sq1.*
-        ,plu.qty_pluie
+        ,plu.pluie_mm
     FROM sq1
-    LEFT JOIN {{ref('stg_pluvio_merged')}} as plu
-    ON sq1.date_date = plu.date
-), 
+    LEFT JOIN {{ref('int_pluvio_by_day')}} as plu
+    ON sq1.date_date = plu.date_date
+),
 
 -- Join avec la table lieux_accidents
 
@@ -49,11 +49,23 @@ sq3 AS (
 -- Join avec la table usagers_accidents
 
 SELECT
-    sq3.*
-    ,usa.gravite_blessure
+    sq3.Num_Acc
+    ,sq3.cle
+    ,sq3.date_date
+    ,sq3.categorie_vehicule
     ,usa.sexe
-    ,usa.trajet
     ,usa.annee_naissance
+    ,usa.gravite_blessure
+    ,sq3.meteo
+    ,sq3.pluie_mm
+    ,sq3.situation
+    ,sq3.intersection
+    ,sq3.voie_reservee
+    ,usa.trajet
+    ,sq3.longitude
+    ,sq3.latitude
 FROM sq3
 LEFT JOIN {{ref('stg_usagers_accidents')}} as usa
 ON sq3.cle = usa.cle 
+ORDER BY sq3.Num_Acc DESC
+
