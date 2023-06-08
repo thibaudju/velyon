@@ -1,9 +1,5 @@
 -- De la table stationnement, récupérer le nombre de capacité vélos en plus par commune et par an
 
-{{ config(
-    materialized='view'
-)}}
-
 SELECT
     commune
     ,annee

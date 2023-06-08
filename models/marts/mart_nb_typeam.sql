@@ -1,10 +1,5 @@
 -- De la table aménagement, récupérer le nombre de type d'aménagements au global pour la métropole (avec la longueur moyenne par aménagement)
 
-{{ config(
-    materialized='view'
-)}}
-
-
 WITH amenagement_table AS (
     SELECT
         typeamenagement
@@ -15,6 +10,7 @@ WITH amenagement_table AS (
     ORDER BY nb_amenagements_total DESC
 )
 
+-- Récupérer la longueur moyenne d'un aménagement
 SELECT
     *
     ,ROUND(SAFE_DIVIDE(longueur_amenagement,nb_amenagements_total),0) AS longueur_moyenne_amenagement

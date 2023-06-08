@@ -1,10 +1,6 @@
 -- Regrouper l'évolution de la population par année avec l'évolution du nombre d'aménagements cyclables et de stationnements vélos
 -- Le tout par commune et par an
 
-{{ config(
-    materialized='view'
-)}}
-
 -- Création d'un ID pour la table stg_amenagement (regroupement pour avoir le nombre d'aménagements par an et par commune)
 WITH amenagement AS (
     SELECT
