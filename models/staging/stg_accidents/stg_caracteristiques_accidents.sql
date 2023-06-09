@@ -5,7 +5,7 @@
 -- Cleaning de la table "caracteristiques_accidents"
 
 SELECT 
-t1.Num_Acc,
+Num_Acc,
 CAST((FORMAT_TIMESTAMP('%Y-%m-%d', TIMESTAMP(DATE(CONCAT(CAST(an AS STRING), '-', CAST(mois AS STRING), '-', CAST(jour AS STRING)))))) AS DATE) AS date_date,
 hrmm  as heure_minute,
     CASE 
@@ -62,16 +62,8 @@ com as commune_insee,
 UPPER(COALESCE(adr,'')) as adresse,
 COALESCE(lat, '') as Latitude,
 COALESCE(long, '') as Longitude
-,t2.City as Ville
-,t2.Municipality as Municipalite
-,t2.Postcode as CP
 
 FROM velyon-batch-1187.accident.caracteristiques_all as t1
-
--- JOIN sur la table accidents_loc_filtered pour obtenir la commune et le CP où ont eu lieu les accidents
--- (la table accidents_loc_filtered a été créée depuis un csv créé à partir d'un script sur une table pré filtrée par simplicité)
-LEFT JOIN velyon-batch-1187.accident.accidents_loc_filtered as t2 ON
-t1.Num_Acc = t2.Num_Acc
 
 -- Filtre sur le département de Lyon
 WHERE dep like '69%'

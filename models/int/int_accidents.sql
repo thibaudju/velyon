@@ -16,9 +16,6 @@ WITH sq1 AS (
         ,cara.intersection
         ,REPLACE(cara.latitude,",",".") as latitude
         ,REPLACE(cara.longitude,",",".") as longitude
-        ,cara.Ville
-        ,cara.Municipalite
-        ,cara.CP
         ,cara.commune_insee
         ,cara.meteo
     FROM {{ref('stg_caracteristiques_accidents')}} as cara
