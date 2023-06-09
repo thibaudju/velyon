@@ -60,9 +60,10 @@ com as commune_insee,
         ELSE ' '
     END as collision,
 UPPER(COALESCE(adr,'')) as adresse,
-COALESCE(lat, '') as latitude,
-COALESCE(long, '') as longitude
+COALESCE(lat, '') as Latitude,
+COALESCE(long, '') as Longitude
 
-FROM velyon-batch-1187.accident.caracteristiques_all
+FROM velyon-batch-1187.accident.caracteristiques_all as t1
+
 -- Filtre sur le département de Lyon
 WHERE dep like '69%'
