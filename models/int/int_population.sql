@@ -4,8 +4,8 @@
 )}}
 
 SELECT 
-   ,annee 
-  SUM(nb_habitants) AS total_habitants
+   annee 
+   ,SUM(nb_habitants) AS total_habitants
 FROM {{ref("stg_population")}}
 GROUP BY annee
 ORDER BY annee
