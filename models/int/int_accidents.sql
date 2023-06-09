@@ -52,7 +52,7 @@ sq4 AS (
         sq3.*,
         commune,
         total_habitants,
-        surface_km2
+        surface_km2,
     FROM sq3 
     LEFT JOIN {{ref('int_commune_insee')}} icom ON icom.insee=sq3.commune_insee
 )
@@ -91,6 +91,7 @@ SELECT
     ,sq4.latitude as Latitude
     ,sq4.longitude as Longitude
     ,CONCAT(sq4.latitude,",",sq4.longitude) as geo_coordinates
+    ,sq4.commune_insee
     ,sq4.commune
     ,sq4.total_habitants
     ,sq4.surface_km2
