@@ -17,7 +17,7 @@ hrmm  as heure_minute,
         ELSE ' '
     END as lumiere,
 dep as departement,
-com as commune_insee,
+CAST(com as INT64) AS commune_insee,
     CASE 
         WHEN agg = 1 THEN 'Hors agglomération'
         WHEN agg = 2 THEN 'En agglomération'
