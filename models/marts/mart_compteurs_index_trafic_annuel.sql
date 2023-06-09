@@ -9,6 +9,7 @@ ORDER BY year
 
 SELECT
     year,
+    SUM(trafic) AS trafic,
     trafic / MIN (trafic) OVER () AS index_trafic,
     trafic / (LAG (trafic, 1) OVER(ORDER BY year ASC)) -1 AS evo_yoy
 FROM yearly_norm_trafic
