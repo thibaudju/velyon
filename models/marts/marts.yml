@@ -15,3 +15,28 @@ models:
             description: index de trafic avec l'année la plus  basse en base 100
             tests:
               - not_null
+
+    - name: mart_accident_traffic_pop
+      description: table pour data viz - nombre d'accidents, index trafic, place staionnement velo créé et population par année.
+            
+      columns:
+          - name: year
+            description: année de mesure
+            tests : 
+            - not_null
+            - unique
+
+          - name: total_accidents
+            description: nombre d'accidents vélo
+            tests : 
+
+          - name: total_habitants
+            description: année de mesure
+
+
+          - name: index_trafic
+            description: index du trafic de vélo
+
+          - name: capacite_statio_velo
+            description: capacite de stationnement velo construit pendant l'année
+
