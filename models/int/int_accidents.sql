@@ -77,8 +77,8 @@ SELECT
         WHEN usa.trajet IS NULL THEN "Non défini"
         ELSE usa.trajet
         END AS trajet
-    ,sq3.latitude
-    ,sq3.longitude
+    ,sq3.latitude as Latitude
+    ,sq3.longitude as Longitude
     ,CONCAT(sq3.latitude,",",sq3.longitude) as geo_coordinates
 FROM sq3
 LEFT JOIN {{ref('stg_usagers_accidents')}} as usa
