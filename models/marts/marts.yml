@@ -17,8 +17,7 @@ models:
               - not_null
           - name: evo_yoy
             description: évolution du trafic annuel vs l'année précédente (fonction LAG)
-            tests:
-              - not_null
+
           - name: trafic
             description: Somme des passages annuels relevés sur les compteurs vélos
 
