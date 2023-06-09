@@ -14,8 +14,8 @@ WITH sq1 AS (
         ,veh.cle
         ,veh.categorie_vehicule
         ,cara.intersection
-        ,cara.longitude
-        ,cara.latitude
+        ,REPLACE(cara.latitude,",",".") as latitude
+        ,REPLACE(cara.longitude,",",".") as longitude
         ,cara.meteo
     FROM {{ref('stg_caracteristiques_accidents')}} as cara
     LEFT JOIN {{ref('stg_vehicules_accidents')}} as veh
@@ -77,9 +77,9 @@ SELECT
         WHEN usa.trajet IS NULL THEN "Non défini"
         ELSE usa.trajet
         END AS trajet
-    ,sq3.longitude
     ,sq3.latitude
-    ,CONCAT(REPLACE(sq3.latitude,",","."),",",REPLACE(sq3.longitude,",",".")) as geo_coordinates
+    ,sq3.longitude
+    ,CONCAT(sq3.latitude,",",sq3.longitude) as geo_coordinates
 FROM sq3
 LEFT JOIN {{ref('stg_usagers_accidents')}} as usa
 ON sq3.cle = usa.cle 
