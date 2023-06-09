@@ -2,4 +2,4 @@
 
 SELECT
     sum(capacite) AS capacite_statio_velos
-FROM {{ref("stg_stationnement")}}
+FROM {{ref("int_stationnement")}}
