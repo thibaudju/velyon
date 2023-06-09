@@ -4,6 +4,6 @@ SELECT
     commune
     ,annee
     ,sum(capacite) AS capacite_statio_velos
-FROM {{ref("stg_stationnement")}}
+FROM {{ref("int_stationnement")}}
 GROUP BY commune,annee
 ORDER BY commune,capacite_statio_velos DESC
