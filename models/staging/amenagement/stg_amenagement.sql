@@ -48,4 +48,6 @@ SELECT
         ELSE zonecirculationapaisee
         END
     AS zonecirculationapaisee
-FROM velyon-batch-1187.amenagement.amenagement
+FROM velyon-batch-1187.amenagement.amenagement 
+-- Exclusion des outliers : quatre vents à Dardilly, Rives de Saône à Rochetaillée sur Saone, 
+WHERE nom <> "Chemin des Quatre Vents" AND nom <> "Rives de Saône" 
