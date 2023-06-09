@@ -1,7 +1,4 @@
--- On vient récupérer la population totale de l'agglomération lyonnaise (Grand Lyon) par an
-{{ config(
-    materialized='view'
-)}}
+-- On vient récupérer la population totale ainsi que la superficie en km2 de chaque commune de l'agglomération lyonnaise (Grand Lyon)
 
 WITH communes AS(
 SELECT 
@@ -18,3 +15,4 @@ SELECT
     ,superficies.surface_km2
 FROM communes
 LEFT JOIN {{ref("stg_superficies")}} AS superficies USING (insee)
+ORDER BY commune

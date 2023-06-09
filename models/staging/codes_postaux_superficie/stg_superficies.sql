@@ -10,3 +10,5 @@ SELECT
 FROM   
    (SELECT *   
 FROM `velyon-batch-1187.superficies.superficies`)
+WHERE nom <> ""
+ORDER BY nom
