@@ -45,15 +45,25 @@ sq3 AS (
     FROM sq2
     LEFT JOIN {{ref('stg_lieux_accidents')}} as lieux
     ON sq2.Num_Acc = lieux.Num_Acc
+),
+
+sq4 AS (
+    SELECT
+        sq3.*,
+        commune,
+        total_habitants,
+        surface_km2
+    FROM sq3 
+    LEFT JOIN {{ref('int_commune_insee')}} icom ON icom.insee=sq3.commune_insee
 )
 
 -- Join avec la table usagers_accidents
 
 SELECT
-    sq3.Num_Acc
-    ,sq3.cle
-    ,sq3.date_date
-    ,sq3.categorie_vehicule
+    sq4.Num_Acc
+    ,sq4.cle
+    ,sq4.date_date
+    ,sq4.categorie_vehicule
     ,CASE
         WHEN usa.sexe IS NULL THEN "Non défini"
         ELSE usa.sexe
@@ -66,24 +76,26 @@ SELECT
         WHEN usa.gravite_blessure IS NULL THEN "Non défini"
         ELSE usa.gravite_blessure
         END AS gravite_blessure
-    ,sq3.meteo
+    ,sq4.meteo
     ,CASE
-        WHEN sq3.pluie_mm IS NULL THEN 0
-        ELSE sq3.pluie_mm
+        WHEN sq4.pluie_mm IS NULL THEN 0
+        ELSE sq4.pluie_mm
         END AS pluie_mm
-    ,sq3.situation
-    ,sq3.intersection
-    ,sq3.voie_reservee
+    ,sq4.situation
+    ,sq4.intersection
+    ,sq4.voie_reservee
     ,CASE
         WHEN usa.trajet IS NULL THEN "Non défini"
         ELSE usa.trajet
         END AS trajet
-    ,sq3.latitude as Latitude
-    ,sq3.longitude as Longitude
-    ,CONCAT(sq3.latitude,",",sq3.longitude) as geo_coordinates
-    ,sq3.commune_insee
-FROM sq3
+    ,sq4.latitude as Latitude
+    ,sq4.longitude as Longitude
+    ,CONCAT(sq4.latitude,",",sq4.longitude) as geo_coordinates
+    ,sq4.commune
+    ,sq4.total_habitants
+    ,sq4.surface_km2
+FROM sq4
 LEFT JOIN {{ref('stg_usagers_accidents')}} as usa
-ON sq3.cle = usa.cle 
-ORDER BY sq3.Num_Acc DESC
+ON sq4.cle = usa.cle 
+ORDER BY sq4.Num_Acc DESC
 
