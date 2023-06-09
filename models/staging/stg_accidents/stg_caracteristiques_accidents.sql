@@ -63,6 +63,12 @@ UPPER(COALESCE(adr,'')) as adresse,
 COALESCE(lat, '') as latitude,
 COALESCE(long, '') as longitude
 
-FROM velyon-batch-1187.accident.caracteristiques_all
+FROM velyon-batch-1187.accident.caracteristiques_all as t1
+
+-- JOIN sur la table accidents_loc_filtered pour obtenir la commune et le CP où ont eu lieu les accidents
+-- (la table accidents_loc_filtered a été créée depuis un csv créé à partir d'un script sur une table pré filtrée par simplicité)
+LEFT JOIN velyon-batch-1187.accidents_loc_filtered as t2 ON
+t1.Num_Acc = t2.Num_Acc
+
 -- Filtre sur le département de Lyon
 WHERE dep like '69%'
