@@ -3,7 +3,7 @@ version: 2
 models:
 
     - name: mart_compteurs_index_trafic_annuel
-      description: table pour data viz - creation d'un index annuel de trafic sur une base 100 l'année où le trafic est le plus bas. 
+      description: table pour data viz - creation d'un index annuel de trafic vélo sur une base 100 l'année où le trafic est le plus bas. 
             
       columns:
           - name: year
@@ -15,3 +15,34 @@ models:
             description: index de trafic avec l'année la plus  basse en base 100
             tests:
               - not_null
+          - name: evo_yoy
+            description: évolution du trafic annuel vs l'année précédente (fonction LAG)
+
+          - name: trafic
+            description: Somme des passages annuels relevés sur les compteurs vélos
+
+
+    - name: mart_accident_traffic_pop
+      description: table pour data viz - nombre d'accidents, index trafic, place staionnement velo créé et population par année.
+            
+      columns:
+          - name: year
+            description: année de mesure
+            tests : 
+            - not_null
+            - unique
+
+          - name: total_accidents
+            description: nombre d'accidents vélo
+            tests : 
+
+          - name: total_habitants
+            description: année de mesure
+
+
+          - name: index_trafic
+            description: index du trafic de vélo
+
+          - name: capacite_statio_velo
+            description: capacite de stationnement velo construit pendant l'année
+
