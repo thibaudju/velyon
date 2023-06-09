@@ -65,4 +65,4 @@ COALESCE(long, '') as longitude
 
 FROM velyon-batch-1187.accident.caracteristiques_all
 -- Filtre sur le département de Lyon
-WHERE dep = '69'
+WHERE dep like '69%'
