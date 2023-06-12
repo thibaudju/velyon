@@ -1,11 +1,8 @@
 {{ config(
     materialized='view',
 )}}
-
 -- Création d'une table int_accidents pour regrouper les informations principales
-
 -- sq1 = première jointure avec la table caracteristiques_accidents
-
 WITH sq1 AS (
     SELECT
         cara.date_date
@@ -23,9 +20,7 @@ WITH sq1 AS (
         ON cara.Num_Acc = veh.Num_Acc
     WHERE veh.categorie_vehicule = 'Bicyclette'
 ),
-
 -- Jointure optionelle avec la table pluie pour obtenir la quantité exacte de pluie en cas d'accidents
-
 sq2 AS (
     SELECT
         sq1.*
@@ -34,9 +29,7 @@ sq2 AS (
     LEFT JOIN {{ref('int_pluvio_by_day')}} as plu
     ON sq1.date_date = plu.date_date
 ),
-
 -- Join avec la table lieux_accidents
-
 sq3 AS (
     SELECT
         sq2.*
@@ -45,24 +38,8 @@ sq3 AS (
     FROM sq2
     LEFT JOIN {{ref('stg_lieux_accidents')}} as lieux
     ON sq2.Num_Acc = lieux.Num_Acc
-<<<<<<< HEAD
-),
-
-sq4 AS (
-    SELECT
-        sq3.*,
-        commune,
-        total_habitants,
-        surface_km2,
-    FROM sq3 
-    LEFT JOIN {{ref('int_commune_insee')}} icom ON icom.insee=sq3.commune_insee
-=======
->>>>>>> c3d8bea70a73edc891b6235790e7e0c75c2a2826
 )
-
-
 -- Join avec la table usagers_accidents
-
 SELECT
     sq3.Num_Acc
     ,sq3.cle
@@ -92,23 +69,16 @@ SELECT
         WHEN usa.trajet IS NULL THEN "Non défini"
         ELSE usa.trajet
         END AS trajet
-<<<<<<< HEAD
-    ,sq4.latitude as Latitude
-    ,sq4.longitude as Longitude
-    ,CONCAT(sq4.latitude,",",sq4.longitude) as geo_coordinates
-    ,sq4.commune_insee
-    ,sq4.commune
-    ,sq4.total_habitants
-    ,sq4.surface_km2
-FROM sq4
-=======
     ,sq3.latitude as Latitude
     ,sq3.longitude as Longitude
     ,CONCAT(sq3.latitude,",",sq3.longitude) as geo_coordinates
     ,sq3.commune_insee
 FROM sq3
->>>>>>> c3d8bea70a73edc891b6235790e7e0c75c2a2826
 LEFT JOIN {{ref('stg_usagers_accidents')}} as usa
-ON sq3.cle = usa.cle 
+ON sq3.cle = usa.cle
 ORDER BY sq3.Num_Acc DESC
+
+
+
+
 
