@@ -17,7 +17,8 @@ with
 select
     buffer.*,
     extract(year from buffer.date_date) as year_accident,
-    CASE
+    amenagements.anneelivraison AS annee_livraison_amenagement,
+        CASE
         WHEN amenagements.typeamenagement IS NULL THEN "Aucun Aménagement"
         WHEN amenagements.typeamenagement IS NOT NULL THEN amenagements.typeamenagement
     END AS typeamenagement
