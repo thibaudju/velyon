@@ -72,7 +72,7 @@ SELECT
     ,sq3.latitude as Latitude
     ,sq3.longitude as Longitude
     ,CONCAT(sq3.latitude,",",sq3.longitude) as geo_coordinates
-    ,sq3.commune_insee
+    ,CAST(sq3.commune_insee AS STRING) AS commune_insee
 FROM sq3
 LEFT JOIN {{ref('stg_usagers_accidents')}} as usa
 ON sq3.cle = usa.cle
