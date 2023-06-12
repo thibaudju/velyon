@@ -24,12 +24,11 @@ ON CAST(t1.commune_insee AS STRING) = CAST(t2.insee AS STRING)
 sq2 AS (
     SELECT
         commune
-        ,geometry
         ,COUNT(Num_Acc) AS nb_accidents
         ,ROUND(AVG(population),0) AS population
         ,ROUND(AVG(danger_score),2) AS danger_score
     FROM sq1
-    GROUP BY commune, geometry
+    GROUP BY commune
 ),
 
 sq3 AS (
@@ -44,6 +43,8 @@ FROM sq2
 SELECT
     sq3.*
     ,ROUND((danger_score*1+ratio_acc),2) as danger_score_global
+    ,pop.geometry
 FROM sq3
+LEFT JOIN {{ ref('stg_population') }} AS pop ON sq3.commune = pop.commune
 ORDER BY danger_score_global DESC
 
