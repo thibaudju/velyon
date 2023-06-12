@@ -15,7 +15,7 @@ WITH sq1 AS (
         ,REPLACE(cara.longitude,",",".") as longitude
         ,cara.commune_insee
         ,cara.meteo
-    FROM {{ref('stg_caracteristiques_accidents')}} as cara
+    FROM {{ref('stg_cara_accidents_clean')}} as cara
     LEFT JOIN {{ref('stg_vehicules_accidents')}} as veh
         ON cara.Num_Acc = veh.Num_Acc
     WHERE veh.categorie_vehicule = 'Bicyclette'
