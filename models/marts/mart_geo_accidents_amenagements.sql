@@ -17,9 +17,13 @@ with
 select
     buffer.*,
     extract(year from buffer.date_date) as year_accident,
-    amenagements.typeamenagement
+    CASE
+        WHEN amenagements.typeamenagement IS NULL THEN "Aucun Aménagement"
+        WHEN amenagements.typeamenagement IS NOT NULL THEN amenagements.typeamenagement
+    END AS typeamenagement
 from buffer
 left join
     velyon-batch-1187.amenagement.pvo_patrimoine_voirie as amenagements
      ON ST_INTERSECTS(ST_BOUNDARY(buffer.accidents_buffer), amenagements.geom)
         AND extract(year from buffer.date_date) >=amenagements.anneelivraison
+ 
