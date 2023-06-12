@@ -1,11 +1,8 @@
 {{ config(
     materialized='view',
 )}}
-
 -- Création d'une table int_accidents pour regrouper les informations principales
-
 -- sq1 = première jointure avec la table caracteristiques_accidents
-
 WITH sq1 AS (
     SELECT
         cara.date_date
@@ -23,9 +20,7 @@ WITH sq1 AS (
         ON cara.Num_Acc = veh.Num_Acc
     WHERE veh.categorie_vehicule = 'Bicyclette'
 ),
-
 -- Jointure optionelle avec la table pluie pour obtenir la quantité exacte de pluie en cas d'accidents
-
 sq2 AS (
     SELECT
         sq1.*
@@ -34,9 +29,7 @@ sq2 AS (
     LEFT JOIN {{ref('int_pluvio_by_day')}} as plu
     ON sq1.date_date = plu.date_date
 ),
-
 -- Join avec la table lieux_accidents
-
 sq3 AS (
     SELECT
         sq2.*
@@ -46,10 +39,7 @@ sq3 AS (
     LEFT JOIN {{ref('stg_lieux_accidents')}} as lieux
     ON sq2.Num_Acc = lieux.Num_Acc
 )
-
-
 -- Join avec la table usagers_accidents
-
 SELECT
     sq3.Num_Acc
     ,sq3.cle
@@ -85,6 +75,10 @@ SELECT
     ,sq3.commune_insee
 FROM sq3
 LEFT JOIN {{ref('stg_usagers_accidents')}} as usa
-ON sq3.cle = usa.cle 
+ON sq3.cle = usa.cle
 ORDER BY sq3.Num_Acc DESC
+
+
+
+
 
