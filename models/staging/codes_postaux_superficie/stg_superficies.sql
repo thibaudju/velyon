@@ -1,7 +1,7 @@
 SELECT 
   nom
   ,nomreduit
-  ,insee
+  ,CAST(insee AS STRING) AS insee
   ,trigramme
   ,surface_km2
   ,datemaj
