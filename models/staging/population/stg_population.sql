@@ -9,7 +9,7 @@ SELECT
   ,commune
   ,CAST(insee AS STRING) AS insee
   ,gid
-  ,geometry
+  ,ST_GEOGFROMTEXT(geometry) AS geometry
 FROM   
    (SELECT *   
 FROM `velyon-batch-1187.population.population`) AS population
