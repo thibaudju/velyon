@@ -2,7 +2,7 @@
 
 SELECT 
   code_postal AS CP
-  ,CAST(code_commune_insee AS INT64) as insee
+  ,CAST(code_commune_insee AS STRING) as insee
   ,nom_de_la_commune AS commune_CP
   ,geometry
 FROM   
