@@ -11,8 +11,8 @@ WITH dates_clean AS (
 SELECT 
 mesures.channel_id,
 mesures.counter_id,
-start_datetime,
-end_datetime,
+TIMESTAMP_ADD(start_datetime, INTERVAL 1 HOUR) AS start_datetime,
+TIMESTAMP_ADD(end_datetime, INTERVAL 1 HOUR) AS end_datetime,
 count,
 normalized_count
 FROM velyon-batch-1187.mesures_compteurs.all_mesures AS mesures
