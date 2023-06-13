@@ -1,7 +1,7 @@
 WITH requete_1 AS (
     SELECT 
         year,
-        round(index_trafic,0) as index_trafic
+        round(index_trafic,2) as index_trafic
     FROM
         `velyon-batch-1187.dbt_prod.mart_compteurs_index_trafic_annuel`
 ),
