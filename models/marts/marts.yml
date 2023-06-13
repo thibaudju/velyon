@@ -45,4 +45,15 @@ models:
 
           - name: capacite_statio_velo
             description: capacite de stationnement velo construit pendant l'année
-
+    - name: mart_compteurs_hourly
+      description: somme des passages et moyenne des passages normalisés agrégés par heure
+      columns:
+        - name: start_hour
+          description: date et heure de la mesure
+          tests:
+            - not_null
+            - unique
+        - name: nb_passages
+          description: somme du nombre de passages observés pendant cette heure sur l'ensemble des compteurs
+        - name: avg_normalized_count
+          description: moyenne du nombre de passages normalisés. Permet de comparer les données quelque soit le nombre de compteurs et la différence de fréquentation.
