@@ -29,15 +29,24 @@ sq2 AS (
     LEFT JOIN {{ref('int_pluvio_by_day')}} as plu
     ON sq1.date_date = plu.date_date
 ),
+
+sq4 AS (
+    SELECT
+        sq2.*
+        ,commune
+    FROM sq2
+    LEFT JOIN {{ref("int_commune_insee")}} as com
+    ON sq2.commune_insee = com.insee
+),
 -- Join avec la table lieux_accidents
 sq3 AS (
     SELECT
-        sq2.*
+        sq4.*
         ,lieux.situation
         ,lieux.voie_reservee
-    FROM sq2
+    FROM sq4
     LEFT JOIN {{ref('stg_lieux_accidents')}} as lieux
-    ON sq2.Num_Acc = lieux.Num_Acc
+    ON sq4.Num_Acc = lieux.Num_Acc
 )
 -- Join avec la table usagers_accidents
 SELECT
@@ -65,6 +74,7 @@ SELECT
     ,sq3.situation
     ,sq3.intersection
     ,sq3.voie_reservee
+    ,sq3.commune
     ,CASE
         WHEN usa.trajet IS NULL THEN "Non défini"
         ELSE usa.trajet
