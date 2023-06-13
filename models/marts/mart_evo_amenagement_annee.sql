@@ -1,5 +1,5 @@
 SELECT
-    EXTRACT(YEAR FROM annee) AS annee
+    annee
     ,typeamenagement
     ,ROUND(SUM(longueur)/1000,1) AS km_amenagements
 FROM {{ ref('stg_amenagement') }}
