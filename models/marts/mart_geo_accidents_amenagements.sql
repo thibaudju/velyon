@@ -12,7 +12,7 @@ with
 
     geogpoint as (select st_geogpoint(long_clean, lat_clean) as geom, * from modulo),
 
-    buffer as (select *, st_buffer(geom, 15) as accidents_buffer from geogpoint)
+    buffer as (select *, st_buffer(geom, 20) as accidents_buffer from geogpoint)
 
 select
     buffer.*,
