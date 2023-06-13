@@ -6,6 +6,7 @@ WITH sq1 AS (
             WHEN t2.danger_score IS NULL THEN 0
             ELSE T2.danger_score
             END AS danger_score
+        ,t2.geometry
     FROM {{ ref('mart_nb_am_stat_commune') }} t1
     LEFT JOIN {{ ref('mart_danger_score') }} t2 
     ON t1.commune = t2.commune
@@ -27,8 +28,9 @@ sq3 AS (
 )
 
 SELECT
-    *
+    sq3.*
     ,NTILE (10) OVER (ORDER BY int_rank) AS indice_cyclable
 FROM sq3
-ORDER BY indice_cyclable ASC
+
+
 
