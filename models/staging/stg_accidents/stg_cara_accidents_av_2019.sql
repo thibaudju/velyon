@@ -23,7 +23,7 @@ SELECT
     ,CONCAT(
         LEFT(Longitude, 1),
         '.',
-        REPLACE(SUBSTRING(Longitude, 3), '.', '')
+        REPLACE(SUBSTRING(Longitude, 2), '.', '')
     ) AS Longitude
 FROM {{ref('stg_caracteristiques_accidents')}}
 WHERE DATE(date_date) < '2019-01-01'
