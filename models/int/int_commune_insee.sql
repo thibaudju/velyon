@@ -3,14 +3,14 @@
 -- Rajouter un left join avec stg_codes_postaux
 with
     communes as (
-        select commune, insee, sum(nb_habitants) as total_habitants
+        select distinct commune, insee, sum(nb_habitants) as total_habitants
         from {{ ref("stg_population") }}
         group by commune, insee
         order by commune
     ),
 
     total_tables as (
-        select
+        select distinct
             communes.commune,
             codes.CP,
             superficies.surface_km2,
