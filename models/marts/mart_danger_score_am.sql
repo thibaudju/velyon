@@ -9,6 +9,7 @@ WITH sq1 AS (
                 WHEN gravite_blessure = 'Tué' THEN 10
                 END AS danger_score
     FROM {{ ref('mart_geo_accidents_amenagements') }} t1
+    WHERE geom IS NOT NULL
 ),
 
 sq2 AS (
